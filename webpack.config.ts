@@ -10,7 +10,7 @@ const translations = JSON.parse(fs.readFileSync('i18n.json', 'utf8'));
 const config: webpack.Configuration = {
     mode: 'production',
     entry: {
-        app: './src/App2.tsx',
+        app: './src/pages/root2.tsx',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

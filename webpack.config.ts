@@ -1,14 +1,16 @@
 import * as path from 'path';
+import * as fs from 'fs';
 import * as webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import StatoscopePlugin from '@statoscope/webpack-plugin';
 
-// @todo загрузить переводы из файла
+// Load translations from the i18n.json file
+const translations = JSON.parse(fs.readFileSync('i18n.json', 'utf8'));
 
 const config: webpack.Configuration = {
     mode: 'production',
     entry: {
-        // @todo настроить entry
+        app: './src/pages/root2.tsx',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -22,13 +24,22 @@ const config: webpack.Configuration = {
             open: false,
         }),
     ],
-
     resolve: {
-        // @todo настроить resolve
+        extensions: ['.js', '.ts', '.tsx'],
     },
     module: {
         rules: [
-            // @todo настроить загрузчик
+            {
+                test: /\.js$/,
+                use: [
+                    {
+                        loader: 'i18n-loader',
+                        options: {
+                            translations,
+                        },
+                    },
+                ],
+            },
         ],
     },
     resolveLoader: {

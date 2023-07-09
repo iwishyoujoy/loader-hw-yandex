@@ -10,7 +10,7 @@ const translations = JSON.parse(fs.readFileSync('i18n.json', 'utf8'));
 const config: webpack.Configuration = {
     mode: 'production',
     entry: {
-        app: './src/pages/root2.tsx',
+        app: './src/App2.tsx',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -30,8 +30,10 @@ const config: webpack.Configuration = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|ts|tsx)$/,
+                exclude: /node_modules/,
                 use: [
+                    'ts-loader',
                     {
                         loader: 'i18n-loader',
                         options: {

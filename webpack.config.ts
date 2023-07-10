@@ -49,6 +49,7 @@ const config: webpack.Configuration = {
             'i18n-loader': path.resolve(__dirname, 'loaders/i18n-loader.cjs'),
         },
     },
+    stats: 'minimal', // make sure log is minimal
 };
 
 export default config;

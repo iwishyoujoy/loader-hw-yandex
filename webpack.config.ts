@@ -33,13 +33,13 @@ const config: webpack.Configuration = {
                 test: /\.(js|ts|tsx)$/,
                 exclude: /node_modules/,
                 use: [
+                    'ts-loader', // webpack use loaders in reverse order
                     {
                         loader: 'i18n-loader',
                         options: {
                             translations,
                         },
                     },
-                    'ts-loader', // webpack use loaders in reverse order
                 ],
             },
         ],
